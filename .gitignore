@@ -1,0 +1,10 @@
+###> symfony/framework-bundle ###
+/.env
+/public/bundles/
+/var/
+/vendor/
+/docker/mysql
+/.idea
+/.DS_Store
+/.env.dist
+###< symfony/framework-bundle ###
