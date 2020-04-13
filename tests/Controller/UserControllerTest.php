@@ -28,10 +28,20 @@ class ContactControllerTest extends WebTestCase
         $client->submitForm('Save', [
             'user[lastName]' => 'Marc',
             'user[firstName]' => 'André',
-            'user[email]' => 'mandre@demo.com',
+            'user[email]' => 'amarc@demo.com',
             'user[phoneNumber]' => '0108090503'
         ]);
 
+        $this->assertSelectorTextContains('h1', 'User index');
+    }
+
+    public function testDeleteOK()
+    {
+        $client = static::createClient();
+        $client->followRedirects(true);
+        $crawler = $client->request('DELETE', '/2');
+
+        $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'User index');
     }
 
