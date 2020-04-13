@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
+    private const MAX_NAME_LENGTH = 100;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -88,4 +90,45 @@ class User
 
         return $this;
     }
+
+    public function isUserNameValid()
+    {
+        if(false == $this->isUserNameNotEmpty() || false == $this->isUserNameLengthTooLong()) {
+            return false;
+        }
+        return true;
+    }
+
+    public function isUserNameNotEmpty()
+    {
+        if(empty($this->getLastName()) || empty($this->getFirstName())) {
+            return false; //TODO Exception
+        }
+        return true;
+    }
+
+    public function isUserNameLengthTooLong()
+    {
+        if(strlen($this->getLastName()) > self::MAX_NAME_LENGTH || strlen($this->getFirstName()) > self::MAX_NAME_LENGTH) {
+            return false; //TODO Exception
+        }
+        return true;
+    }
+
+    public function isUserEmailValid()
+    {
+        if (!filter_var($this->getEmail(), FILTER_VALIDATE_EMAIL)) {
+            return false; //TODO Exception
+        }
+        return true;
+    }
+
+    public function isUserPhoneNumberValid()
+    {
+        if (!is_numeric($this->getPhoneNumber())) {
+            return false; //TODO Exception
+        }
+        return true;
+    }
+
 }
