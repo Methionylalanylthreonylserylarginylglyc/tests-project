@@ -25,7 +25,7 @@ cp .env.dist .env
 docker-compose up -d
 docker-compose exec --user=application web bash
 ```
-### tests
+### Tests
 ```bash
 ./bin/phpunit
 ```
