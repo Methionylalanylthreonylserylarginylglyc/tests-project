@@ -26,6 +26,15 @@ docker-compose up -d
 docker-compose exec --user=application web bash
 ```
 ### Tests
+
+- Unit testing
 ```bash
-./bin/phpunit
+./bin/phpunit tests/Entity
+```
+
+<br />
+
+- Integration testing
+```bash
+./bin/phpunit tests/Controller
 ```
